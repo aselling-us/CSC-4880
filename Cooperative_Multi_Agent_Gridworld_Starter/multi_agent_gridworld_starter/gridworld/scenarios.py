@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .agents import ExampleBaselineAgent
+from .agents import CoordinatedAgentTemplate, ExampleBaselineAgent
 from .environment import GridWorld
 from .models import Direction
 
@@ -32,14 +32,20 @@ def starter_world() -> GridWorld:
     )
 
 
-def starter_agents() -> dict[str, ExampleBaselineAgent]:
+def starter_agents() -> dict[str, CoordinatedAgentTemplate]:
     """Two distinct but equally limited independent baseline agents."""
 
     return {
-        "robot-1": ExampleBaselineAgent(
+        # "robot-1": ExampleBaselineAgent(
+        #     (Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST)
+        # ),
+        # "robot-2": ExampleBaselineAgent(
+        #     (Direction.WEST, Direction.SOUTH, Direction.EAST, Direction.NORTH)
+        # ),
+        "robot-1": CoordinatedAgentTemplate(
             (Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST)
         ),
-        "robot-2": ExampleBaselineAgent(
+        "robot-2": CoordinatedAgentTemplate(
             (Direction.WEST, Direction.SOUTH, Direction.EAST, Direction.NORTH)
         ),
     }
